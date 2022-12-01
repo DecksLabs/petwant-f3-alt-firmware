@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="></script>
+<script>
+  $(document).ready(function() {
+  $.getJSON('/settings',
+    function(JSONdata) {
+      for (key in JSONdata) {
+        if (JSONdata.hasOwnProperty(key))
+        if(key.includes("dstEn")){
+          document.getElementById(key).checked = JSONdata[key];
+        }
+        else{
+          $('input[name=' + key + ']').val(JSONdata[key]);
+        }
+      }
+    });
+  });
+</script>
+</head>
+<title>Cat Feeder: Settings</title>
+<body>
+
+<div class="center">
+<h2>Cat Feeder</h2>
+<h3>Settings</h3>
+
+<form id="config" action="/settings" method="post">
+  <table class="center">
+    <tr><td><label for="ssid">SSID:</td><td></label><input type="text" id="ssid" name="ssid" /></td></tr>
+    <tr><td><label for="pswd">Password:</td><td></label><input type="password" id="pswd" name="pswd" /></td><tr/>
+    <tr><td><label for="hostname">Hostname:</td><td></label><input type="text" id="hostname" name="hostname" /></td><tr/>
+    <tr><td><label for="ntpSrv">NTP Sever:</td><td></label><input type="text" id="ntpSrv" name="ntpSrv" /></td><tr/>
+    <tr><td><label for="dstEn">Poland DST:</td><td></label><input type="checkbox" id="dstEn" name="dstEn" /></td><tr/>
+    <tr><td><label for="tz">Timezone [h]:</td><td></label><input type="number" id="tz" name="tz" min="-12" max="12" step="0.5"/></td><tr/>
+  </table>  
+  <input class="button" type="submit" value="Save">
+</form>
+
+<button onclick="history.back()" type="button" class="button">Go back</button> <br />
+
+</div>
+</body>
+</html>
+  
