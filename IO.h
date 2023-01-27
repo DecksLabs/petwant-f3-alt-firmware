@@ -86,3 +86,17 @@ struct Output
             digitalWrite(pin, logic == ELogic_ActiveHigh ? LOW : HIGH);
     }
 };
+
+struct AnalogOutput : public Output
+{
+    void setState(bool state)
+    {
+        outputState = state;
+        uint8_t pwm = 48;
+
+        if(state)
+            analogWrite(pin, logic == ELogic_ActiveHigh ? pwm : 255-pwm);
+        else
+            digitalWrite(pin, logic == ELogic_ActiveHigh ? LOW : HIGH);
+    }
+};

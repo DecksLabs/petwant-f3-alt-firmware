@@ -15,7 +15,7 @@ void FeederMechanism::portionDetected()
     {
         portionsToFeedLeft--;
 
-        if(portionsToFeedLeft == 0)
+        if(portionsToFeedLeft <= 0)
             motor.setState(false);
     }
 }

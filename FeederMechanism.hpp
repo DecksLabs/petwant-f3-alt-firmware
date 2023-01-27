@@ -7,6 +7,6 @@ public:
     void portionDetected();
 
 private:
-    uint8_t portionsToFeedLeft = 0;
+    int16_t portionsToFeedLeft = 0;
     bool feeding = false;
 };
